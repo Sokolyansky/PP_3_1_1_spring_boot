@@ -1,6 +1,6 @@
 package com.example.PP_3_1_1_spring_boot.service;
 
-import com.example.PP_3_1_1_spring_boot.dao.UserDao;
+import com.example.PP_3_1_1_spring_boot.repository.UserRepository;
 import com.example.PP_3_1_1_spring_boot.model.User;
 import org.springframework.stereotype.Service;
 
@@ -10,35 +10,35 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     final
-    UserDao userDAO;
+    UserRepository userRepository;
 
-    public UserServiceImpl(UserDao userDAO) {
-        this.userDAO = userDAO;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDAO.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User getUserById(Long id) {
-        return userDAO.findById(id).orElseThrow(
+        return userRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Пользователя с таким ID не существует!!!"));
     }
 
     @Override
     public void saveUser(User user) {
-        userDAO.save(user);
+        userRepository.save(user);
     }
 
     @Override
     public void updateUser(User updatedUser) {
-        userDAO.save(updatedUser);
+        userRepository.save(updatedUser);
     }
 
     @Override
     public void deleteUser(Long id) {
-        userDAO.deleteById(id);
+        userRepository.deleteById(id);
     }
 }

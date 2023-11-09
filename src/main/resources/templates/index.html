@@ -7,12 +7,12 @@
 <body>
 <div th:each="user : ${users}">
     <p>
-        <a th:href="@{/edituser(id=${user.getId()})}" th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}">id</a>
+        <a th:href="@{/edit_user(id=${user.getId()})}" th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}">id</a>
         <a th:href="@{/delete_user(id=${user.getId()})}">    Удалить </a>
 
     </p>
 </div>
-<form th:method="GET" th:action="@{/addUser}">
+<form th:method="GET" th:action="@{/add_user}">
     <input type="submit" value="Add user">
 </form>
 </body>
